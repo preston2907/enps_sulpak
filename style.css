@@ -1,0 +1,9 @@
+.form-container{
+    display: block;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.form-container--header{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
