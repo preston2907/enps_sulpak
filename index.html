@@ -26,7 +26,8 @@
 
         <h2 class="form-container--header">Форма создания анкет</h2>
         <div class="alert alert-primary" role="alert">
-            Для выбора сотрудников, которым вы хотите назначить тест - введите ФИО или Подразделение, не меньше 3х символов
+            Для выбора сотрудников, которым вы хотите назначить тест - введите ФИО или Подразделение, не меньше 3х
+            символов
         </div>
 
         <div class="form-container--search_block">
@@ -34,11 +35,11 @@
                 <div class="mb-3 row">
                     <h4 class="col-sm-4 ">Поиск сотрудников:</h4>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" id="searchText">
+                        <input type="text" class="form-control" id="searchText">
                     </div>
-                  </div>
+                </div>
             </div>
-            <table class="table">
+            <table id="search_table" class="table" style="display: none;">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -47,42 +48,44 @@
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td><a class="btn btn-primary btn-sm " href="#" role="button"> Добавить</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                <tbody id="search_body">
                 </tbody>
             </table>
+
+            <div class="form-container--search_block--empty_message">
+                <div class="alert alert-secondary" role="alert">
+                    Нет выбранных сотрудников
+                </div>
+            </div>
+            <div id="spinner" class="loader">Loading...</div>
         </div>
 
         <div class="form-container--choosed_block">
             <h3>Выбранные сотрудники:</h3>
+            <table id="choosed_table" class="table" style="display: none;">
+                <thead>
+                    <tr >
+                        <th scope="col" class="col-5" >ФИО</th>
+                        <th scope="col" class="col-5">Подразделение</th>
+                        <th scope="col" class="col-2"></th>
+                    </tr>
+                </thead>
+                <tbody id="choosed_body">
+                </tbody>
+            </table>
             <div class="form-container--choosed_block--empty_message">
                 <div class="alert alert-secondary" role="alert">
                     Нет выбранных сотрудников
-                  </div>
+                </div>
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+        <button type="button" class="btn btn-primary" disabled  >
             Создать анкеты
         </button>
-        <div id="spinner" class="loader">Loading...</div>
+
     </div>
+    <script src="lodash.js"></script>
     <script src="main.js"></script>
 </body>
 
