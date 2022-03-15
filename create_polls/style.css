@@ -7,3 +7,9 @@
     margin-top: 10px;
     margin-bottom: 15px;
 }
+.btn.add-btn{
+    width: 100px;
+}
+.btn#create_button[disabled]{
+    cursor: not-allowed;
+}

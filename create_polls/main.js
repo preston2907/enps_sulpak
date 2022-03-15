@@ -27,11 +27,14 @@ function deleteChoosed(obj, button) {
     let indexToDel = choosedArr.findIndex(elem => elem.id == obj.id);
     choosedArr.splice(indexToDel, 1);
     button.parentElement.parentElement.remove()
-
+    const create_btn = document.getElementById('create_polls');
     if (choosedArr.length == 0) {
         let tableBody = document.getElementById('choosed_body');
         tableBody.parentElement.style.display = 'none';
         document.querySelector('.form-container--choosed_block--empty_message').style.display = 'block';
+        create_btn.classList.remove('btn-success');
+        create_btn.classList.add('btn-secondary');
+        create_btn.disabled = true;
     }
 
 }
@@ -94,6 +97,7 @@ function renderTableBody(jsonObj) {
         addButton.classList.add('btn');
         addButton.classList.add('btn-primary');
         addButton.classList.add('btn-sm');
+        addButton.classList.add('add-btn');
         addButton.setAttribute('type', 'button');
         addButton.addEventListener('click', (elem) => {
             addChoosedElem(element, elem.target)
@@ -109,7 +113,7 @@ function renderTableBody(jsonObj) {
     });
 
     if (jsonObj.length > 0) {
-        searchTable.style.display = 'block';
+        searchTable.style.display = 'table';
     } else {
         $('.form-container--search_block--empty_message').show();
     }
@@ -119,6 +123,7 @@ function renderTableBody(jsonObj) {
 function addChoosedElem(elemObj, buttonElem) {
 
     let tableBody = document.getElementById('choosed_body');
+    const create_btn = document.getElementById('create_polls');
 
     if (choosedArr.findIndex((elem) => { return elem.id == elemObj.id }) == -1) {
         choosedArr.push(elemObj);
@@ -127,8 +132,11 @@ function addChoosedElem(elemObj, buttonElem) {
         buttonElem.disabled = true;
         buttonElem.innerHTML = "Добавлено";
         if (choosedArr.length > 0) {
-            tableBody.parentElement.style.display = 'block';
+            tableBody.parentElement.style.display = 'table';
             document.querySelector('.form-container--choosed_block--empty_message').style.display = 'none';
+            create_btn.classList.remove('btn-secondary');
+            create_btn.classList.add('btn-success');
+            create_btn.disabled = false;
         }
     } else {
         alert('Данный сотрудник ранее уже добавлен');
@@ -150,7 +158,7 @@ function searchCols(text) {
         searchTable.style.display = 'none';
 
         $.ajax({
-            url: "http://10.20.100.236/enps/controller.html",
+            url: "http://kazsdo.sulpak.kz:81/enps/controller.html",
             data: {
                 action: 'find_person',
                 search_text: text
@@ -167,34 +175,43 @@ function searchCols(text) {
     }
 
 }
-function createPols(text) {
-    let searchTable = document.getElementById('search_table');
+function createPols() {
+    let tableBody = document.getElementById('choosed_body');
+    let search_body = document.getElementById('search_body');
+    const create_btn = document.getElementById('create_polls');
+    const success_message = document.querySelector('.form-container--choosed_block--success_message');
+    const empty_message_choose = $('.form-container--choosed_block--empty_message');
+    const empty_message_search = $('.form-container--search_block--empty_message');
 
-    if (text.length >= 3) {
-
-        $('.form-container--search_block--empty_message').hide();
-        showSpinner();
-
-        searchTable.style.display = 'none';
-
+    create_btn.disabled = true;
         $.ajax({
-            url: "http://10.20.100.236/enps/controller.html",
+            url: "http://kazsdo.sulpak.kz:81/enps/controller.html",
             data: {
-                action: 'find_person',
-                search_text: text
+                action: 'create_poll_result',
+                pols_arr: JSON.stringify(choosedArr)
             },
             method: "POST",
             success: function (data) {
-                renderTableBody(data);
-                hideSpinner();
+                tableBody.parentElement.style.display = 'none';
+                choosedArr = [];
+                success_message.hidden = false;
+                create_btn.classList.add('btn-secondary');
+                create_btn.classList.remove('btn-success');
+                setTimeout(() => {
+                    search_body.parentElement.style.display = 'none';
+                    success_message.hidden = true;
+                    empty_message_choose.show();
+                    empty_message_search.show();
+                    tableBody.innerHTML = '';
+                    search_body.innerHTML = '';
+                    $('#searchText').val('');
+                }, 4000);
+
             }
         })
-    } else {
-        $('.form-container--search_block--empty_message').show();
-        searchTable.style.display = 'none';
     }
 
-}
+
 
 
 
