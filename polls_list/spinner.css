@@ -1,3 +1,9 @@
+.loader-cont{
+  width: 10em;
+  height: 10em;
+  overflow: hidden;
+  margin: 0 auto;
+}
 .loader,
 .loader:after {
   border-radius: 50%;
@@ -5,8 +11,10 @@
   height: 10em;
 }
 .loader {
-  display: none;
-  margin: 80px auto;
+  /* width: 100px;
+  height: 100px; */
+
+  margin: 50px auto;
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
