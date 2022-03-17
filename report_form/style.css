@@ -1,0 +1,23 @@
+.form-container{
+    display: block;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.form-container--header{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.empty_row{
+    text-align: center;
+    font-weight: 300;
+}
+
+.modal-footer{
+    justify-content: center;
+}
+.del-btn{
+    margin-left: 5px;
+}
+.btn-col{
+    width: 11%;
+}

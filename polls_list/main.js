@@ -30,7 +30,7 @@ function renderTableBody(jsonObj) {
             tdSub.innerHTML = element.sub_name;
 
             let tdCreateDate = document.createElement('td');
-            tdCreateDate.innerHTML = element.create_date;
+            tdCreateDate.innerHTML = element.last_date;
 
             let tdButton = document.createElement('td');
             // tdButton.classList.add('row')
@@ -97,19 +97,12 @@ function renderTableBody(jsonObj) {
             tdSub.innerHTML = element.sub_name;
 
             let tdCreateDate = document.createElement('td');
-            tdCreateDate.innerHTML = element.create_date;
+            tdCreateDate.innerHTML = element.last_date;
 
-            let tdMark = document.createElement('td');
-            tdMark.innerHTML = element.mark;
-
-            let tdComment = document.createElement('td');
-            tdComment.innerHTML = element.comment;
 
             newTr.appendChild(tdFio);
             newTr.appendChild(tdSub);
             newTr.appendChild(tdCreateDate);
-            newTr.appendChild(tdMark);
-            newTr.appendChild(tdComment);
             finishTableBody.appendChild(newTr);
         });
 
@@ -143,7 +136,7 @@ function renderFillModal(jsonObj) {
         <div class="mb-3 row">
             <label for="staticCreateDate" class="col-sm-2 col-form-label">Дата создания</label>
             <div class="col-sm-10">
-                <input type="text" disabled readonly class="form-control-plaintext" id="staticCreateDate" value="${jsonObj.create_date}">
+                <input type="text" disabled readonly class="form-control-plaintext" id="staticCreateDate" value="${jsonObj.last_date}">
             </div>
         </div>
 
@@ -239,9 +232,11 @@ function fillPR(prID) {
         },
         method: "POST",
         success: function (data) {
-            $('.modal-body').html(`<h3>Результат сохранен</h3>`)
+            $('.modal-body').html(`<h4>Результат сохранен</h4>`)
             getPollsArr();
-            modalWindow.toggle()
+            setTimeout(() => {
+                modalWindow.hide()
+            }, 900);
             $('.modal-footer').show();
             
         },
@@ -264,9 +259,11 @@ function deletePR(pr_id){
         },
         method: "POST",
         success: function (data) {
-            $('.modal-body').html(`<h3>Анкета удалена</h3>`)
+            $('.modal-body').html(`<h4>Анкета удалена</h4>`)
             getPollsArr();
-            modalWindow.toggle()
+            setTimeout(() => {
+                modalWindow.hide()
+            }, 900);
             $('.modal-footer').show();
         },
         error: function (data) {
