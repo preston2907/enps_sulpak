@@ -23,6 +23,41 @@
 <body>
 
     <div class="form-container">
+
+        <h2 class="form-container--header">Форма выгрузки отчета</h2>
+        <div class="alert alert-primary" role="alert">
+            В указанной ниже форме выберите тип отчета, из доступных, и даты за которые вы хотите получить отчет. После нажатия на кнопку "Сформировать" отчет прийдет вам на электронную почту.
+        </div>
+
+
+        <div class="mb-3 row">
+            <label for="inputComment" class="col-sm-2 col-form-label">Дата с:</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control validate" id="inputComment">
+            </div>
+            <label for="inputComment" class="col-sm-2 col-form-label">Дата по:</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control validate" id="inputComment">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputMark" class="col-sm-2 col-form-label">Тип отчета</label>
+            <div class="col-sm-6">
+            <select class="form-select" id="inputMark" aria-label="Default select example">
+                <option value="my_subs" selected>Отчет по моим подразделениям</option>
+                <option value="admin">Общий отчет для администратора</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-around">
+            <a class="btn btn-success btn-sm col-sm-3 " id="portal_report" href="#" role="button">Выгрузить на портал</a>
+            <a class="btn btn-primary btn-sm col-sm-3 " id="file_report" href="#" role="button">Отправить файл на почту</a>
+        </div>
+
+
+
+
     </div>
 
     <script src="lodash.js"></script>

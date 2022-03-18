@@ -237,7 +237,10 @@ function fillPR(prID) {
             setTimeout(() => {
                 modalWindow.hide()
             }, 900);
-            $('.modal-footer').show();
+            setTimeout(() => {
+                $('.modal-footer').show();
+            }, 1200);
+            
             
         },
         error: function (data) {
@@ -264,7 +267,10 @@ function deletePR(pr_id){
             setTimeout(() => {
                 modalWindow.hide()
             }, 900);
-            $('.modal-footer').show();
+            setTimeout(() => {
+                $('.modal-footer').show();
+            }, 1200);
+            
         },
         error: function (data) {
             console.log(data)
